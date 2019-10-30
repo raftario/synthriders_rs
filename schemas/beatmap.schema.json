@@ -1,0 +1,595 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "NoteType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "Note": {
+      "description": "Note representation",
+      "type": "object",
+      "properties": {
+        "Id": {
+          "description": "ID for cache use, when set the format used is Note_{value passed}",
+          "type": "string"
+        },
+        "ComboId": {
+          "description": "Combo Id that the note bellow to, is 0 based meaing that -1 means that the note doesnt belong to any combo",
+          "type": "integer"
+        },
+        "Position": {
+          "description": "Position of the note on the space",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Segments": {
+          "description": "Segments of the line tha form the note",
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "Type": {
+          "description": "Type of the note",
+          "$ref": "#/definitions/NoteType"
+        },
+        "Direction": {
+          "description": "Direction to hit the note",
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      }
+    },
+    "Beats": {
+      "description": "Beats Representaion",
+      "type": "object",
+      "properties": {
+        "Easy": {
+          "description": "Notes for the easy dificulty",
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+(\\.[0-9]+)?$": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Note"
+              }
+            }
+          }
+        },
+        "Normal": {
+          "description": "Notes for the normal dificulty",
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+(\\.[0-9]+)?$": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Note"
+              }
+            }
+          }
+        },
+        "Hard": {
+          "description": "Notes for the hard dificulty",
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+(\\.[0-9]+)?$": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Note"
+              }
+            }
+          }
+        },
+        "Expert": {
+          "description": "Notes for the expert dificulty",
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+(\\.[0-9]+)?$": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Note"
+              }
+            }
+          }
+        },
+        "Master": {
+          "description": "Notes for the Master dificulty",
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+(\\.[0-9]+)?$": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Note"
+              }
+            }
+          }
+        },
+        "Custom": {
+          "description": "Notes for the Custom dificulty",
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+(\\.[0-9]+)?$": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Note"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Effects": {
+      "description": "Effects Representaion",
+      "type": "object",
+      "properties": {
+        "Easy": {
+          "description": "Effects for the easy dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Normal": {
+          "description": "Effects for the Normal dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Hard": {
+          "description": "Effects for the Hard dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Expert": {
+          "description": "Effects for the Expert dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Master": {
+          "description": "Effects for the Master dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Custom": {
+          "description": "Effects for the Custom dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "Lights": {
+      "description": "Lights Representaion",
+      "type": "object",
+      "properties": {
+        "Easy": {
+          "description": "Lights for the easy dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Normal": {
+          "description": "Lights for the Normal dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Hard": {
+          "description": "Lights for the Hard dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Expert": {
+          "description": "Lights for the Expert dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Master": {
+          "description": "Lights for the Master dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Custom": {
+          "description": "Lights for the Custom dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "Bookmark": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Bookmarks": {
+      "description": "Bookmars Representaion",
+      "type": "object",
+      "properties": {
+        "BookmarksList": {
+          "description": "Effects for the beatmap",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Bookmark"
+          }
+        }
+      }
+    },
+    "Jumps": {
+      "description": "Jumps Representaion",
+      "type": "object",
+      "properties": {
+        "Easy": {
+          "description": "Jumps for the easy dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Normal": {
+          "description": "Jumps for the Normal dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Hard": {
+          "description": "Jumps for the Hard dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Expert": {
+          "description": "Jumps for the Expert dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Master": {
+          "description": "Jumps for the Master dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Custom": {
+          "description": "Jumps for the Custom dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "Crouchs": {
+      "description": "Crouch Representaion",
+      "type": "object",
+      "properties": {
+        "Easy": {
+          "description": "Crouchs for the easy dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Normal": {
+          "description": "Crouchs for the Normal dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Hard": {
+          "description": "Crouchs for the Hard dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Expert": {
+          "description": "Crouchs for the Expert dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Master": {
+          "description": "Crouchs for the Master dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "Custom": {
+          "description": "Crouchs for the Custom dificulty",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "Slide": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "number"
+        },
+        "slideType": {
+          "$ref": "#/definitions/NoteType"
+        },
+        "initialized": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Slides": {
+      "description": "Slides Representaion",
+      "type": "object",
+      "properties": {
+        "Easy": {
+          "description": "Slides for the easy dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slide"
+          }
+        },
+        "Normal": {
+          "description": "Slides for the Normal dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slide"
+          }
+        },
+        "Hard": {
+          "description": "Slides for the Hard dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slide"
+          }
+        },
+        "Expert": {
+          "description": "Slides for the Expert dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slide"
+          }
+        },
+        "Master": {
+          "description": "Slides for the Expert dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slide"
+          }
+        },
+        "Custom": {
+          "description": "Slides for the Custom dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Slide"
+          }
+        }
+      }
+    },
+    "Drum": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "number"
+        },
+        "playType": {
+          "type": "integer"
+        },
+        "audio": {
+          "type": "string"
+        }
+      }
+    },
+    "DrumData": {
+      "description": "Slides Representaion",
+      "type": "object",
+      "properties": {
+        "Easy": {
+          "description": "Drum for the easy dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Drum"
+          }
+        },
+        "Normal": {
+          "description": "Drum for the Normal dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Drum"
+          }
+        },
+        "Hard": {
+          "description": "Drum for the Hard dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Drum"
+          }
+        },
+        "Expert": {
+          "description": "Drum for the Expert dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Drum"
+          }
+        },
+        "Master": {
+          "description": "Drum for the Expert dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Drum"
+          }
+        },
+        "Custom": {
+          "description": "Drum for the Custom dificulty",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Drum"
+          }
+        }
+      }
+    }
+  },
+  "title": "Synth Riders BeatMap Meta",
+  "description": "Chart made from the user",
+  "type": "object",
+  "properties": {
+    "Name": {
+      "description": "Name of the chart",
+      "type": "string"
+    },
+    "Author": {
+      "description": "Author of the chart/song",
+      "type": "string"
+    },
+    "Artwork": {
+      "description": "Artwork name to use for the chart",
+      "type": "string"
+    },
+    "ArtworkBytes": {
+      "description": "Artwork base64 data",
+      "type": "string"
+    },
+    "AudioName": {
+      "description": "Name of the song that belong to the chart",
+      "type": "string"
+    },
+    "AudioData": {
+      "description": "Audio Data of the song that belong to the chart",
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "AudioFrecuency": {
+      "description": "Audio Frecuency of the song that belong to the chart",
+      "type": "integer"
+    },
+    "AudioChannels": {
+      "description": "Number of channels of the song that belong to the chart",
+      "type": "integer"
+    },
+    "BPM": {
+      "description": "BPM of the Chart",
+      "type": "number"
+    },
+    "Offset": {
+      "description": "Offset on seconds befor the Song start playing",
+      "type": "number"
+    },
+    "Track": {
+      "description": "List of beats that made the Chart",
+      "$ref": "#/definitions/Beats"
+    },
+    "Effects": {
+      "description": "List of the effects for the chart",
+      "$ref": "#/definitions/Effects"
+    },
+    "Bookmarks": {
+      "description": "List of the bookmars for the chart",
+      "$ref": "#/definitions/Bookmarks"
+    },
+    "Jumps": {
+      "description": "List of the Jumps for the chart",
+      "$ref": "#/definitions/Jumps"
+    },
+    "Crouchs": {
+      "description": "List of the Crouchs for the chart",
+      "$ref": "#/definitions/Crouchs"
+    },
+    "Slides": {
+      "description": "List of the Slides for the chart",
+      "$ref": "#/definitions/Slides"
+    },
+    "Lights": {
+      "description": "List of the Lights for the chart",
+      "$ref": "#/definitions/Lights"
+    },
+    "DrumSamples": {
+      "description": "List of the Drum for the chart",
+      "$ref": "#/definitions/DrumData"
+    },
+    "FilePath": {
+      "description": "The path of the file on disk",
+      "type": "string"
+    },
+    "IsAdminOnly": {
+      "description": "Is true the chart can only be edited with Admin Mode",
+      "type": "boolean"
+    },
+    "EditorVersion": {
+      "description": "Version of the Editor in what the Chart was made",
+      "type": "string"
+    },
+    "Beatmapper": {
+      "description": "Name of the creator of the beatmap",
+      "type": "string"
+    },
+    "CustomDifficultyName": {
+      "type": "string"
+    },
+    "CustomDifficultySpeed": {
+      "type": "number"
+    },
+    "UsingBeatMeasure": {
+      "type": "boolean"
+    },
+    "Tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

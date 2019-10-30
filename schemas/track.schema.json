@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Synth Riders Track Data",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "artist": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "coverImage": {
+      "type": "string"
+    },
+    "audioFile": {
+      "type": "string"
+    },
+    "supportedDifficulties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "bpm": {
+      "type": "number"
+    },
+    "mapper": {
+      "type": "string"
+    }
+  }
+}
